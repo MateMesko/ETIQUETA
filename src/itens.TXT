@@ -1,0 +1,3 @@
+Area logind,
+
+pegar dados da api, e criar key
