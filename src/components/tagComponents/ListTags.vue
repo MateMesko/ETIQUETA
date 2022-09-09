@@ -127,7 +127,7 @@
                         CANCELAR
                       </v-btn>
 
-                      <v-btn color="red"  text  @click="deletar(values.id)" >
+                      <v-btn color="red"  text  @click="delete(values.id)" >
                         CONFIRMAR
                       </v-btn>
                     </v-card-actions>                  
@@ -211,20 +211,31 @@ export default {
       this.$http.get('printDB').then( res => {
       this.printerTag=res.data})
     }
+    
   },
 
   methods:{
-    deletar(id){
-    
+    delete(id){
       this.$http.delete(`/printDB/${id}`)
+      this.delay(1)
       this.snackbar = true
       this.text = ("deletado com sucesso")
       
-            this.$router.push({path:'/etiqueta'})
-      this.$http.get('printDB').then(res => {
-        this.printerTag=res.data
+      this.$http.get('printDB').then(res=>{
+        this.printerTag = res.data
       })
-       this.$router.push({path:'/etiqueta'})
+
+
+      this.$http.get('printDB').then(res=>{
+        this.printerTag = res.data
+      })
+      
+    },
+
+    delay(n){
+      return new Promise(function(resolve){
+          setTimeout(resolve,n*1000);
+      });
     },
 
     createTag(){
@@ -239,6 +250,7 @@ export default {
       this.$http.get('printDB').then(res=>{
         this.printerTag = res.data
       })
+      
     },
     
     voltar(){
@@ -246,6 +258,7 @@ export default {
         this.printerTag = res.data
       })
     }
+   
   },
 };
 </script>
