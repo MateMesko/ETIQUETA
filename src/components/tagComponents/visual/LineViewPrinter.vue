@@ -4,7 +4,6 @@
     <div style="display:table;position:absolute;font-family:" v-for="(breakLinesItens, k) in itenValue" :key="breakLinesItens" :style="lineFont + lineSpaceRight + lineSpaceTop">
       <div style="display:table;position:relative;font-family:	monospace;line-height: 60%;" :style="`margin-top:${lineProp.spaceLine*k}mm`">
         {{itenValue[k]}}
-        
       </div>
     </div>
   </div>
@@ -22,16 +21,19 @@ export default {
       tamanho: 0,
       teste: '',
       j: 0,
-      partes: []
+      partes: [],
+      testes: ''
     };
   },
 
   computed:{
+    
     lineTipe(){
       return this.lineProp.infoField
     },
 
     lineFont(){
+      this.fontType()
       return `font-size:${(this.tamanho * this.slider) * (this.lineProp.sizeFont * this.slider)}pt;`
     },
 
@@ -48,21 +50,24 @@ export default {
     transformValue(valueLineBreak){
       
       if(this.lineProp.breakText != 0){
+
         let leters = valueLineBreak.length / this.lineProp.breakText 
-        for(var leterIndex=0; leterIndex < this.itenValue.length; leterIndex++)
-        {
+        for(var leterIndex=0; leterIndex < this.itenValue.length; leterIndex++){
           this.itenValue[leterIndex] = undefined
         }
 
-        for( leterIndex=0; leterIndex < Math.ceil(leters); leterIndex++)
-        {
+        for( leterIndex=0; leterIndex < Math.ceil(leters); leterIndex++){
+
           this.partes[leterIndex] = undefined
           this.partes[leterIndex] = ''
+
           for(var j=0; j < this.lineProp.breakText; j++){
+
             if(leterIndex > 0){
               if(valueLineBreak[j+(leterIndex * this.lineProp.breakText)])
               this.partes[leterIndex] += valueLineBreak[j + (leterIndex * this.lineProp.breakText)] 
             }
+
             else{
               this.partes[leterIndex] += valueLineBreak[j]
             }
@@ -72,7 +77,6 @@ export default {
       }
 
       else{
-
         for(leterIndex = 0 ; leterIndex < this.itenValue.length ; leterIndex++){
           this.itenValue[leterIndex] = undefined
         }
@@ -81,46 +85,35 @@ export default {
     },
     
     optionSelected(){
-      if(this.lineProp.type == 'NOME_PROD'){
-  
-        this.transformValue(this.visualValue.name)
-      }
-      else if(this.lineProp.type == 'NOME_EMPRESA'){
-        this.transformValue(this.visualValue.companyName)
-      }
-      else if(this.lineProp.type == 'EAN_13'){
-        this.transformValue(this.visualValue.code)
-      }else if(this.lineProp.type == 'VALOR'){
-
-        this.transformValue(this.visualValue.unitary_value.toFixed(2))
-      }
-      else if(this.lineProp.type == 'PERSON_TEXT'){
-        this.transformValue(this.lineProp.textEditable)
-      }
-      else if(this.lineProp.type == 'COD_PROD'){
-        this.transformValue(this.visualValue.code)
+      if(this.visualValue){
+        const convertToPTS = typeSelected=>{
+          const fontPTS={
+            NOME_PROD:this.visualValue.name,
+            NOME_EMPRESA:this.visualValue.companyName,
+            EAN_13:this.visualValue.code,
+            VALOR:this.visualValue.unitary_value.toFixed(2),
+            PERSON_TEXT:this.lineProp.textEditable,
+            COD_PROD:this.visualValue.code,
+            COD_NOME:this.visualValue.DisplayName
+          }
+          return fontPTS[typeSelected]
+        }
+        this.transformValue(convertToPTS(this.lineProp.type))
       } 
-      else if(this.lineProp.type == 'COD_NOME'){
-        this.transformValue(this.visualValue.DisplayName)
-      }
     },
    
     fontType(){
-      if(this.lineProp.typeFont == '1'){
-        this.tamanho = 6
+      const convertToPTS = fontSelected=>{
+        const fontPTS={
+          1:6,
+          2:7,
+          3:10,
+          4:12,
+          5:24
+        }
+        return fontPTS[fontSelected]
       }
-      else if(this.lineProp.typeFont == '2'){
-        this.tamanho = 7
-      }
-      else if(this.lineProp.typeFont == '3'){
-        this.tamanho = 10
-      }
-      else if(this.lineProp.typeFont == '4'){
-        this.tamanho = 12
-      }
-      else if(this.lineProp.typeFont == '5'){
-        this.tamanho = 24
-      }
+      this.tamanho=convertToPTS(this.lineProp.typeFont)
     }
   },
 

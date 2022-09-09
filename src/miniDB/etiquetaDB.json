@@ -164,62 +164,6 @@
       "dataField": {
         "line": []
       },
-      "id": 3
-    },
-    {
-      "dataPrint": {
-        "valid": false,
-        "name": "",
-        "code": "",
-        "heightTag": 30,
-        "widthTag": 30,
-        "numColumn": 1
-      },
-      "dataField": {
-        "line": []
-      },
-      "id": 4
-    },
-    {
-      "dataPrint": {
-        "valid": false,
-        "name": "",
-        "code": "",
-        "heightTag": 30,
-        "widthTag": 30,
-        "numColumn": 1
-      },
-      "dataField": {
-        "line": []
-      },
-      "id": 5
-    },
-    {
-      "dataPrint": {
-        "valid": false,
-        "name": "",
-        "code": "",
-        "heightTag": 30,
-        "widthTag": 30,
-        "numColumn": 1
-      },
-      "dataField": {
-        "line": []
-      },
-      "id": 7
-    },
-    {
-      "dataPrint": {
-        "valid": false,
-        "name": "",
-        "code": "",
-        "heightTag": 30,
-        "widthTag": 30,
-        "numColumn": 1
-      },
-      "dataField": {
-        "line": []
-      },
       "id": 9
     }
   ],
