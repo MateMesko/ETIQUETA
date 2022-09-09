@@ -162,7 +162,32 @@
         "numColumn": 1
       },
       "dataField": {
-        "line": []
+        "line": [
+          {
+            "infoField": "NOME DA EMPRESA",
+            "textEditable": "",
+            "typeFont": 2,
+            "sizeFont": 1,
+            "breakText": 0,
+            "spaceLine": 0,
+            "spaceYard": 0,
+            "spaceXtension": 0,
+            "secao": 0,
+            "type": "NOME_EMPRESA"
+          },
+          {
+            "infoField": "CODIGO DO PRODUTO",
+            "textEditable": "",
+            "typeFont": 3,
+            "sizeFont": 2,
+            "breakText": 0,
+            "spaceLine": 0,
+            "spaceYard": 0,
+            "spaceXtension": 0,
+            "secao": 0,
+            "type": "COD_PROD"
+          }
+        ]
       },
       "id": 3
     }

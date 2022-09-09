@@ -278,27 +278,21 @@ export default {
       },
   
       save () {
-        if(this.editedItem.infoField == 'NOME DA EMPRESA'){
-           this.editedItem.type='NOME_EMPRESA'
+        const convertToValueAPI = typeSelected=>{
+          const valuesAPI={
+            'NOME DA EMPRESA' : 'NOME_EMPRESA',
+            'CODIGO DO PRODUTO' : 'COD_PROD',
+            'NOME DO PRODUTO' :'NOME_PROD',
+            'CODIGO+NOME DO PRODUTO' : 'COD_NOME',
+            'VALOR' : 'VALOR',
+            'EAN13' : 'EAN_13',
+            'TEXTO PERSONALIZADO' : 'PERSON_TEXT'
+          }
+          return valuesAPI[typeSelected]
         }
-        else if(this.editedItem.infoField == 'CODIGO DO PRODUTO'){
-           this.editedItem.type='COD_PROD'
-        }
-        else if(this.editedItem.infoField == 'NOME DO PRODUTO'){
-          this.editedItem.type='NOME_PROD'
-        }
-        else if(this.editedItem.infoField == 'CODIGO+NOME DO PRODUTO'){
-          this.editedItem.type='COD_NOME'
-        }
-        else if( this.editedItem.infoField == 'VALOR'){
-          this.editedItem.type='VALOR'
-        }
-        else if(this.editedItem.infoField == 'EAN13'){
-          this.editedItem.type='EAN_13'
-        }
-        else if(this.editedItem.infoField == 'TEXTO PERSONALIZADO'){
-          this.editedItem.infoField='PERSON_TEXT'
-        }
+        this.editedItem.type=convertToValueAPI(this.editedItem.infoField)
+       
+
         if (this.editedIndex > -1) {
           Object.assign(this.dataField.line[this.editedIndex], this.editedItem)
         }

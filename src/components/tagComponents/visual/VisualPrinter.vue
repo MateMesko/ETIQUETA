@@ -18,24 +18,24 @@
 import lineViewPrinter from './LineViewPrinter.vue'
 
 export default {
-    components:  { lineViewPrinter },
-    props: ["viewDataReceived", "visualValue"],
+  components: { lineViewPrinter },
+  props: ["viewDataReceived", "visualValue"],
 
-    data() {
-      return {
-        tagArea: this.viewDataReceived.dataPrint,
-        slider:1.5
-      };
+  data() {
+    return {
+      tagArea: this.viewDataReceived.dataPrint,
+      slider:1.5
+    };
+  },
+
+  computed: {
+    dimensions() {
+      return `width:${this.viewDataReceived.dataPrint.widthTag * this.slider}mm; height:${this.viewDataReceived.dataPrint.heightTag * this.slider}mm; border-radius: 7px; border: 1px inset black;`;
     },
-
-    computed: {
-      dimensions() {
-        return `width:${this.viewDataReceived.dataPrint.widthTag * this.slider}mm; height:${this.viewDataReceived.dataPrint.heightTag * this.slider}mm; border-radius: 7px; border: 1px inset black;`;
-      },
-      position() {
-        return `margin-left:${this.viewDataReceived.dataPrint.spaceRight * this.slider}mm; margin-top:${this.viewDataReceived.dataPrint.spaceTop * this.slider}mm`;
-      }
+    position() {
+      return `margin-left:${this.viewDataReceived.dataPrint.spaceRight * this.slider}mm; margin-top:${this.viewDataReceived.dataPrint.spaceTop * this.slider}mm`;
     }
+  }
 }
 </script>
 

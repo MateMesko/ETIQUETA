@@ -86,8 +86,8 @@ export default {
     
     optionSelected(){
       if(this.visualValue){
-        const convertToPTS = typeSelected=>{
-          const fontPTS={
+        const convertToValueAPI = typeSelected=>{
+          const valuesAPI={
             NOME_PROD:this.visualValue.name,
             NOME_EMPRESA:this.visualValue.companyName,
             EAN_13:this.visualValue.code,
@@ -96,9 +96,9 @@ export default {
             COD_PROD:this.visualValue.code,
             COD_NOME:this.visualValue.DisplayName
           }
-          return fontPTS[typeSelected]
+          return valuesAPI[typeSelected]
         }
-        this.transformValue(convertToPTS(this.lineProp.type))
+        this.transformValue(convertToValueAPI(this.lineProp.type))
       } 
     },
    
