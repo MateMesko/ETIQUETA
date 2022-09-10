@@ -127,7 +127,7 @@
                         CANCELAR
                       </v-btn>
 
-                      <v-btn color="red"  text  @click="delete(values.id)" >
+                      <v-btn color="red"  text  @click="deletar(values.id)" >
                         CONFIRMAR
                       </v-btn>
                     </v-card-actions>                  
@@ -197,7 +197,7 @@ export default {
     {
       this.snackbar = true
       this.text = 'Salvo com sucesso'
-      console.log(localStorage.webSite)
+
       localStorage.setItem('webSite', location.pathname)
       this.$http.get('printDB').then(res => {
       this.printerTag=res.data})
@@ -206,7 +206,7 @@ export default {
     {
       this.snackbar = true
       this.text = 'Editado com sucesso'
-      console.log(localStorage.webSite)
+
       localStorage.setItem('webSite', location.pathname)
       this.$http.get('printDB').then( res => {
       this.printerTag=res.data})
@@ -215,7 +215,7 @@ export default {
   },
 
   methods:{
-    delete(id){
+    deletar(id){
       this.$http.delete(`/printDB/${id}`)
       this.delay(1)
       this.snackbar = true

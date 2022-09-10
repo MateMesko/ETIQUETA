@@ -3,88 +3,12 @@
     {
       "dataPrint": {
         "valid": true,
-        "name": "wesley",
+        "name": "teste",
         "code": "5",
         "heightTag": 30,
-        "widthTag": 30,
+        "widthTag": 60,
         "numColumn": 1,
-        "spaceColumn": 10
-      },
-      "dataField": {
-        "line": [
-          {
-            "infoField": "NOME DA EMPRESA",
-            "textEditable": "",
-            "typeFont": 1,
-            "sizeFont": 1,
-            "breakText": 0,
-            "spaceLine": 0,
-            "spaceYard": 1,
-            "spaceXtension": 0,
-            "secao": 0,
-            "type": "NOME_EMPRESA"
-          },
-          {
-            "infoField": "CODIGO DO PRODUTO",
-            "textEditable": "",
-            "typeFont": 2,
-            "sizeFont": 1,
-            "breakText": 0,
-            "spaceLine": 0,
-            "spaceYard": 5,
-            "spaceXtension": 0,
-            "secao": 0,
-            "type": "COD_PROD"
-          },
-          {
-            "infoField": "CODIGO+NOME DO PRODUTO",
-            "textEditable": "",
-            "typeFont": 2,
-            "sizeFont": 1,
-            "breakText": 0,
-            "spaceLine": 0,
-            "spaceYard": 10,
-            "spaceXtension": 0,
-            "secao": 0,
-            "type": "COD_NOME"
-          },
-          {
-            "infoField": "TEXTO PERSONALIZADO",
-            "textEditable": "teste de texto",
-            "typeFont": 2,
-            "sizeFont": 1,
-            "breakText": 0,
-            "spaceLine": 0,
-            "spaceYard": 15,
-            "spaceXtension": 0,
-            "secao": 0,
-            "type": "PERSON_TEXT"
-          },
-          {
-            "infoField": "NOME DO PRODUTO",
-            "textEditable": "",
-            "typeFont": 2,
-            "sizeFont": 1,
-            "breakText": 9,
-            "spaceLine": 5,
-            "spaceYard": 20,
-            "spaceXtension": 5,
-            "secao": 0,
-            "type": "NOME_PROD"
-          }
-        ]
-      },
-      "id": 1
-    },
-    {
-      "dataPrint": {
-        "valid": true,
-        "name": "TESTE 2",
-        "code": "5",
-        "heightTag": 90,
-        "widthTag": 90,
-        "numColumn": 1,
-        "spaceColumn": 1
+        "spaceColumn": 5
       },
       "dataField": {
         "line": [
@@ -92,104 +16,65 @@
             "infoField": "NOME DA EMPRESA",
             "textEditable": "",
             "typeFont": 2,
-            "sizeFont": 1,
-            "breakText": 0,
-            "spaceLine": 0,
-            "spaceYard": 1,
-            "spaceXtension": 1,
-            "secao": 0,
-            "type": "NOME_EMPRESA"
-          },
-          {
-            "infoField": "CODIGO DO PRODUTO",
-            "textEditable": "",
-            "typeFont": 2,
-            "sizeFont": 1,
-            "breakText": 0,
-            "spaceLine": 0,
-            "spaceYard": 4,
-            "spaceXtension": 1,
-            "secao": 0,
-            "type": "COD_PROD"
-          },
-          {
-            "infoField": "NOME DO PRODUTO",
-            "textEditable": "",
-            "typeFont": 2,
-            "sizeFont": 1,
-            "breakText": 0,
-            "spaceLine": 0,
-            "spaceYard": 7,
-            "spaceXtension": 1,
-            "secao": 0,
-            "type": "NOME_PROD"
-          },
-          {
-            "infoField": "CODIGO+NOME DO PRODUTO",
-            "textEditable": "",
-            "typeFont": 2,
-            "sizeFont": 1,
-            "breakText": 0,
-            "spaceLine": 0,
-            "spaceYard": 10,
-            "spaceXtension": 1,
-            "secao": 0,
-            "type": "COD_NOME"
-          },
-          {
-            "infoField": "VALOR",
-            "textEditable": "",
-            "typeFont": 2,
-            "sizeFont": 1,
-            "breakText": 0,
-            "spaceLine": 0,
-            "spaceYard": 13,
-            "spaceXtension": 1,
-            "secao": 0,
-            "type": "VALOR"
-          }
-        ]
-      },
-      "id": 2
-    },
-    {
-      "dataPrint": {
-        "valid": false,
-        "name": "",
-        "code": "",
-        "heightTag": 30,
-        "widthTag": 30,
-        "numColumn": 1
-      },
-      "dataField": {
-        "line": [
-          {
-            "infoField": "NOME DA EMPRESA",
-            "textEditable": "",
-            "typeFont": 2,
-            "sizeFont": 1,
-            "breakText": 0,
-            "spaceLine": 0,
-            "spaceYard": 0,
-            "spaceXtension": 0,
-            "secao": 0,
-            "type": "NOME_EMPRESA"
-          },
-          {
-            "infoField": "CODIGO DO PRODUTO",
-            "textEditable": "",
-            "typeFont": 3,
             "sizeFont": 2,
             "breakText": 0,
             "spaceLine": 0,
             "spaceYard": 0,
             "spaceXtension": 0,
             "secao": 0,
-            "type": "COD_PROD"
+            "type": "NOME_EMPRESA"
+          },
+          {
+            "infoField": "NOME DO PRODUTO",
+            "textEditable": "",
+            "typeFont": 1,
+            "sizeFont": 2,
+            "breakText": 8,
+            "spaceLine": 8,
+            "spaceYard": 10,
+            "spaceXtension": 0,
+            "secao": 0,
+            "type": "NOME_PROD"
+          },
+          {
+            "infoField": "VALOR",
+            "textEditable": "",
+            "typeFont": 2,
+            "sizeFont": 3,
+            "breakText": 0,
+            "spaceLine": 0,
+            "spaceYard": 7,
+            "spaceXtension": 30,
+            "secao": 0,
+            "type": "VALOR"
+          },
+          {
+            "infoField": "TEXTO PERSONALIZADO",
+            "textEditable": "texto personalizado",
+            "typeFont": 4,
+            "sizeFont": 1,
+            "breakText": 0,
+            "spaceLine": 0,
+            "spaceYard": 23,
+            "spaceXtension": 0,
+            "secao": 0,
+            "type": "PERSON_TEXT"
+          },
+          {
+            "infoField": "CODIGO+NOME DO PRODUTO",
+            "textEditable": "",
+            "typeFont": 1,
+            "sizeFont": 1,
+            "breakText": 0,
+            "spaceLine": 0,
+            "spaceYard": 15,
+            "spaceXtension": 30,
+            "secao": 0,
+            "type": "COD_NOME"
           }
         ]
       },
-      "id": 3
+      "id": 1
     }
   ],
   "dataPrinter": {

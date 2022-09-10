@@ -168,7 +168,6 @@ export default {
         },  
         data:{}        
       });
-      console.log(productos)
       const generalData = await axios.get('/general-settings',{  
        
         headers:{

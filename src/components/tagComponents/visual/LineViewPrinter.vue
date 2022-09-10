@@ -119,6 +119,7 @@ export default {
 
   created(){
     this.fontType()
+    this.optionSelected()
   }
 }
 </script>
