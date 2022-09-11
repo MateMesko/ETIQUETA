@@ -4,7 +4,6 @@
             <v-row justify="center">
                 <v-col cols="6" sm="10" md="8" lg="6">
                     <v-card ref="form">
-                        
                         <v-card-text class="text-h4 text-center">LOGIN:</v-card-text>
 
                         <v-card-text>
@@ -41,7 +40,6 @@ export default {
         }
     },
     methods:{
-       
         async handleSubmit(){
             const response = await axios.post('/auth',{
                 

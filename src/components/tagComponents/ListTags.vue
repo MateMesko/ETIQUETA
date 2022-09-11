@@ -153,7 +153,7 @@
 
 <script>
 
-import VisualPrinter from './visual/VisualPrinter'
+import VisualPrinter from './drawn/DrawnDimensions'
 
 export default {
   components: {VisualPrinter},

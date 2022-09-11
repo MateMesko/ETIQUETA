@@ -4,7 +4,7 @@ import home from './components/tagComponents/ListTags'
 
 import HomeTag from './components/tagComponents/HomeTag'
 import ListTags from './components/tagComponents/ListTags'
-import InputValuesTag from './components/tagComponents/AdjustmentTag'
+import InputValuesTag from './components/tagComponents/InputTag'
 import PrinterTags from './components/tagComponents/PrintTag'
 
 import login from './components/login/Login'

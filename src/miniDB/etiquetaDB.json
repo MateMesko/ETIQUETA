@@ -3,20 +3,20 @@
     {
       "dataPrint": {
         "valid": true,
-        "name": "teste",
-        "code": "5",
+        "name": "TESTE",
+        "code": "1",
         "heightTag": 30,
-        "widthTag": 60,
+        "widthTag": 30,
         "numColumn": 1,
-        "spaceColumn": 5
+        "spaceColumn": 1
       },
       "dataField": {
         "line": [
           {
             "infoField": "NOME DA EMPRESA",
             "textEditable": "",
-            "typeFont": 2,
-            "sizeFont": 2,
+            "typeFont": 1,
+            "sizeFont": 1,
             "breakText": 0,
             "spaceLine": 0,
             "spaceYard": 0,
@@ -25,40 +25,28 @@
             "type": "NOME_EMPRESA"
           },
           {
-            "infoField": "NOME DO PRODUTO",
+            "infoField": "CODIGO DO PRODUTO",
             "textEditable": "",
             "typeFont": 1,
-            "sizeFont": 2,
-            "breakText": 8,
-            "spaceLine": 8,
-            "spaceYard": 10,
-            "spaceXtension": 0,
-            "secao": 0,
-            "type": "NOME_PROD"
-          },
-          {
-            "infoField": "VALOR",
-            "textEditable": "",
-            "typeFont": 2,
-            "sizeFont": 3,
-            "breakText": 0,
-            "spaceLine": 0,
-            "spaceYard": 7,
-            "spaceXtension": 30,
-            "secao": 0,
-            "type": "VALOR"
-          },
-          {
-            "infoField": "TEXTO PERSONALIZADO",
-            "textEditable": "texto personalizado",
-            "typeFont": 4,
             "sizeFont": 1,
             "breakText": 0,
             "spaceLine": 0,
-            "spaceYard": 23,
+            "spaceYard": 3,
             "spaceXtension": 0,
             "secao": 0,
-            "type": "PERSON_TEXT"
+            "type": "COD_PROD"
+          },
+          {
+            "infoField": "NOME DO PRODUTO",
+            "textEditable": "",
+            "typeFont": 1,
+            "sizeFont": 1,
+            "breakText": 0,
+            "spaceLine": 0,
+            "spaceYard": 6,
+            "spaceXtension": 0,
+            "secao": 0,
+            "type": "NOME_PROD"
           },
           {
             "infoField": "CODIGO+NOME DO PRODUTO",
@@ -67,14 +55,96 @@
             "sizeFont": 1,
             "breakText": 0,
             "spaceLine": 0,
-            "spaceYard": 15,
-            "spaceXtension": 30,
+            "spaceYard": 9,
+            "spaceXtension": 0,
             "secao": 0,
             "type": "COD_NOME"
+          },
+          {
+            "infoField": "VALOR",
+            "textEditable": "",
+            "typeFont": 1,
+            "sizeFont": 1,
+            "breakText": 0,
+            "spaceLine": 0,
+            "spaceYard": 12,
+            "spaceXtension": 0,
+            "secao": 0,
+            "type": "VALOR"
+          },
+          {
+            "infoField": "EAN13",
+            "textEditable": "",
+            "typeFont": 1,
+            "sizeFont": 1,
+            "breakText": 0,
+            "spaceLine": 0,
+            "spaceYard": 15,
+            "spaceXtension": 0,
+            "secao": 0,
+            "type": "EAN_13"
+          },
+          {
+            "infoField": "TEXTO PERSONALIZADO",
+            "textEditable": "teste",
+            "typeFont": 1,
+            "sizeFont": 1,
+            "breakText": 0,
+            "spaceLine": 0,
+            "spaceYard": 18,
+            "spaceXtension": 0,
+            "secao": 0,
+            "type": "PERSON_TEXT"
           }
         ]
       },
       "id": 1
+    },
+    {
+      "dataPrint": {
+        "valid": true,
+        "name": "teste",
+        "code": "5",
+        "heightTag": 30,
+        "widthTag": 30,
+        "numColumn": 1,
+        "spaceColumn": 5,
+        "spaceTop": 5,
+        "spaceRight": 5,
+        "orientation": "FINAL DA PAGINA"
+      },
+      "dataField": {
+        "line": [
+          {
+            "infoField": "NOME DA EMPRESA",
+            "textEditable": "",
+            "typeFont": 1,
+            "sizeFont": 1,
+            "breakText": 0,
+            "spaceLine": 0,
+            "spaceYard": 0,
+            "spaceXtension": 0,
+            "secao": 0,
+            "type": "NOME_EMPRESA"
+          }
+        ]
+      },
+      "id": 2
+    },
+    {
+      "dataPrint": {
+        "valid": true,
+        "name": "TESTE",
+        "code": "2",
+        "heightTag": 30,
+        "widthTag": 30,
+        "numColumn": 1,
+        "spaceColumn": 5
+      },
+      "dataField": {
+        "line": []
+      },
+      "id": 3
     }
   ],
   "dataPrinter": {

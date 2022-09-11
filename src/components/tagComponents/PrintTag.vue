@@ -65,7 +65,7 @@
 
 <script>
 import axios from './../../axios.js'
-import VisualPrinter from './visual/VisualPrinter'
+import VisualPrinter from './drawn/DrawnDimensions'
 export default {
   props: ['id'],
   components:{VisualPrinter},
