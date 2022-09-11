@@ -38,5 +38,4 @@ export default new Router({
         component:InputValuesTag,props:true,
         name:"criarEtiqueta"
     }]
-
 })
