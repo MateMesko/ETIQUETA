@@ -93,7 +93,6 @@
                                 CONFIRMAR
                                 </v-btn>
                             </v-card-actions>
-
                         </v-card>
                     </v-dialog>
 
@@ -153,7 +152,6 @@
 <script>
 
 export default {
-
 	props: ['retrieved'],
   
 	data: () => ({
