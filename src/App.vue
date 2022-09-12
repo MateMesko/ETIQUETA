@@ -1,6 +1,6 @@
 <template>
   <v-app>
-      <Menu></Menu>
+      <MenuItens></MenuItens>
       <hr>
       <p></p>
       <router-view/>
@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import Menu from './components/navigation/Menu.vue'
+import MenuItens from './components/navigation/MenuItens.vue'
 
 export default {
-    components:{Menu}
+    components:{MenuItens}
 };
 </script>
