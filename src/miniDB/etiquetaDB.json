@@ -130,21 +130,6 @@
         ]
       },
       "id": 2
-    },
-    {
-      "dataPrint": {
-        "valid": true,
-        "name": "TESTE",
-        "code": "2",
-        "heightTag": 30,
-        "widthTag": 30,
-        "numColumn": 1,
-        "spaceColumn": 5
-      },
-      "dataField": {
-        "line": []
-      },
-      "id": 3
     }
   ],
   "dataPrinter": {

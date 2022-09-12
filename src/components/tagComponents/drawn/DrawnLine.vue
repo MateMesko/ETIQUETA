@@ -1,7 +1,6 @@
 <template>
     <div>
         {{optionSelected()}}{{fontType()}}
-
         <div style="display:table;position:absolute;font-family:" v-for="(breakLinesItens, k) in itenValue" :key="breakLinesItens" :style="lineFont + lineSpaceRight + lineSpaceTop">
             <div style="display:table;position:relative;font-family:	monospace;line-height: 60%;" :style="`margin-top:${lineProp.spaceLine*k}mm`">
                 {{itenValue[k]}}

@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './components/tagComponents/IndexTag'
+import HomeTag from './components/Index.vue'
 
+import ListTags from './components/tagComponents/IndexTag'
 import InputValuesTag from './components/tagComponents/InputTag'
 import PrinterTags from './components/tagComponents/PrintTag'
 
 import login from './components/login/Login'
-
 Vue.use(Router)
 
 export default new Router({
@@ -16,14 +16,15 @@ export default new Router({
         //nomeclarutra
     routes:[{    
         path:'/',
-        component:Home
+        component:ListTags
     },
     {
         path:'/etiqueta',
-        component:Home,
+        component:HomeTag,
+        name:"home",
         props:true,
         children:[
-            {path:'', component:Home, name:"home"},
+            {path:'', component:ListTags, name:"home"},
             {path:':id', component:InputValuesTag, props:true, name:"editValues"},
             {path:'imprimir/:id',component:PrinterTags,props:true, }
         ]
