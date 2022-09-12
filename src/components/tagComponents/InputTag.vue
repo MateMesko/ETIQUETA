@@ -101,68 +101,68 @@ import PrinterData from './inputs/InputDimensions'
 import VisualPrinter from './drawn/DrawnDimensions'
 
 export default {
-    props: ['id'],
-    components: {InputtagInfo, PrinterData, VisualPrinter},
+	props: ['id'],
+	components: {InputtagInfo, PrinterData, VisualPrinter},
 
-   data() {
-    return{
-      option:{
-        product:{
-          name: 'nome do produto',
-          companyName: 'nome da empresa',
-          DisplayName: 'codigo+nome',
-          code: 'codigo',
-          textEditable: 'texto editado',
-          unitary_value: 9.999 ,
-        },
-      },
-      e13: 2,
-      visualizar: false,
-      sheet: false,
-      dialog: false,
-      snackbar: false,
-      text: 'My timeout is set to 2000.',
-      timeout: 2000,
-      printerTag: [],
-      valueReceived: {
-       dataPrint: [],
-       dataField: []
-      }
-    }
-  },
+	data() {
+		return{
+			option:{
+				product:{
+					name: 'nome do produto',
+					companyName: 'nome da empresa',
+					DisplayName: 'codigo+nome',
+					code: 'codigo',
+					textEditable: 'texto editado',
+					unitary_value: 9.999 ,
+				},
+			},
+			e13: 2,
+			visualizar: false,
+			sheet: false,
+			dialog: false,
+			snackbar: false,
+			text: 'My timeout is set to 2000.',
+			timeout: 2000,
+			printerTag: [],
+			valueReceived: {
+				dataPrint: [],
+				dataField: []
+			}
+		}
+	},
 
-  methods:{
-    gotoStart(){
-      this.$router.push({path:'/etiqueta'})
-    },
+	methods:{
+		gotoStart(){
+			this.$router.push({path:'/etiqueta'})
+		},
     
-    sendValue() {
-      //verificar como utilizar isso em todo o codigo
-      // let etiqueta = this.printerTag.find(x => x.id == this.id)
-      // console.log(etiqueta)
-      this.snackbar = true
+		sendValue() {
+			//verificar como utilizar isso em todo o codigo
+			// let etiqueta = this.printerTag.find(x => x.id == this.id)
+			// console.log(etiqueta)
+			this.snackbar = true
 
-      if(this.printerTag[this.id] == undefined){
-        localStorage.setItem('webSite', location.pathname)
-        this.$http.post('printDB', this.valueReceived)
-        this.$router.push({name:"home"}) 
-      }
+			if(this.printerTag[this.id] == undefined){
+				localStorage.setItem('webSite', location.pathname)
+				this.$http.post('printDB', this.valueReceived)
+				this.$router.push({name:'home'}) 
+			}
 
-      else{
-        this.$router.push({name:"home"}) 
-        localStorage.setItem('webSite', 'editado')
-        const metodo = this.printerTag[this.id].id ? 'patch' : 'post'
-        const finalUrl = this.printerTag[this.id].id ? `/${this.printerTag[this.id].id}` : ''
-        this.$http[metodo](`/printDB/${finalUrl}`,this.valueReceived)
-      }
-    },
-  },
+			else{
+				this.$router.push({name:'home'}) 
+				localStorage.setItem('webSite', 'editado')
+				const metodo = this.printerTag[this.id].id ? 'patch' : 'post'
+				const finalUrl = this.printerTag[this.id].id ? `/${this.printerTag[this.id].id}` : ''
+				this.$http[metodo](`/printDB/${finalUrl}`,this.valueReceived)
+			}
+		},
+	},
   
-  created(){
-    this.$http.get('printDB').then(res=>{
-      this.printerTag=res.data
-    })
-  }
+	created(){
+		this.$http.get('printDB').then(res=>{
+			this.printerTag=res.data
+		})
+	}
 }
 </script>
 

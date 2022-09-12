@@ -152,164 +152,163 @@
 
 export default {
 
-    props: ['retrieved'],
+	props: ['retrieved'],
   
-    data: () => ({
-        infoRule:[v => !!v || 'Informe o campo'],
-        typeFontRule:[v => !!v || 'Informe a fonte'],
-        sizeFontRule:[v => !!v || 'Informe tamanho de fonte'],
-        valid:false,
-        
-        productsData: ['NOME DA EMPRESA', 'CODIGO DO PRODUTO', 'NOME DO PRODUTO', 'CODIGO+NOME DO PRODUTO', 'VALOR', 'EAN13', 'TEXTO PERSONALIZADO'],
-        fonte: [ 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        tamanhos: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        ean13tamanhos: [0,1, 2, 3, 4, 5, 6, 7, 8, 9],
-        optionsEAN13on:['sim','não'],
-        dialog: false,
-        dialogDelete: false,
+	data: () => ({
+		infoRule:[v => !!v || 'Informe o campo'],
+		typeFontRule:[v => !!v || 'Informe a fonte'],
+		sizeFontRule:[v => !!v || 'Informe tamanho de fonte'],
+		valid:false,
+		productsData: ['NOME DA EMPRESA', 'CODIGO DO PRODUTO', 'NOME DO PRODUTO', 'CODIGO+NOME DO PRODUTO', 'VALOR', 'EAN13', 'TEXTO PERSONALIZADO'],
+		fonte: [ 1, 2, 3, 4, 5, 6, 7, 8, 9],
+		tamanhos: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+		ean13tamanhos: [0,1, 2, 3, 4, 5, 6, 7, 8, 9],
+		optionsEAN13on:['sim','não'],
+		dialog: false,
+		dialogDelete: false,
 
-        headers: [{
-            text: 'INFORMAÇÃO EM LINHA',
-            align: 'start',
-            sortable: false,
-            value: 'infoField',
-            },
+		headers: [{
+			text: 'INFORMAÇÃO EM LINHA',
+			align: 'start',
+			sortable: false,
+			value: 'infoField',
+		},
     
-            { text: 'FONTE', value: 'typeFont' },
-            { text: 'TAMANHO', value: 'sizeFont' },
-            { text: 'ESPAÇAMENTO INFERIOR', value: 'spaceYard' },
-            { text: 'ESPAÇAMENTO ESQUERDA', value: 'spaceXtension' },
-            { text: 'AÇÕES', value: 'actions', sortable: false },
-        ],
+		{ text: 'FONTE', value: 'typeFont' },
+		{ text: 'TAMANHO', value: 'sizeFont' },
+		{ text: 'ESPAÇAMENTO INFERIOR', value: 'spaceYard' },
+		{ text: 'ESPAÇAMENTO ESQUERDA', value: 'spaceXtension' },
+		{ text: 'AÇÕES', value: 'actions', sortable: false },
+		],
     
-        dataField:{
-            line: [],
-        },
+		dataField:{
+			line: [],
+		},
   
-        editedIndex: -1,
+		editedIndex: -1,
         
-        editedItem: {
-            infoField: '',
-            textEditable:'',
-            typeFont: 0,
-            sizeFont: 1,
-            breakText: 0,
-            spaceLine: 0,
-            spaceYard: 0,
-            spaceXtension: 0,
-            secao: 0,
-        },
+		editedItem: {
+			infoField: '',
+			textEditable:'',
+			typeFont: 0,
+			sizeFont: 1,
+			breakText: 0,
+			spaceLine: 0,
+			spaceYard: 0,
+			spaceXtension: 0,
+			secao: 0,
+		},
       
-        defaultItem: {
-            infoField: '',
-            textEditable:'',
-            typeFont: 0,
-            sizeFont: 0,
-            breakText: 0,
-            spaceLine: 0,
-            spaceYard: 0,
-            spaceXtension: 0,
-            secao: 0,
-        },
-    }),
+		defaultItem: {
+			infoField: '',
+			textEditable:'',
+			typeFont: 0,
+			sizeFont: 0,
+			breakText: 0,
+			spaceLine: 0,
+			spaceYard: 0,
+			spaceXtension: 0,
+			secao: 0,
+		},
+	}),
   
-    computed: {
-        formTitle () {
-            return this.editedIndex === -1 ? 'NOVA LINHA' : 'EDITAR LINHA'
-        },
-    },
+	computed: {
+		formTitle () {
+			return this.editedIndex === -1 ? 'NOVA LINHA' : 'EDITAR LINHA'
+		},
+	},
   
-    watch: {
-        dialog (val) {
-            val || this.close()
-        },
+	watch: {
+		dialog (val) {
+			val || this.close()
+		},
 
-        dialogDelete (val) {
-            val || this.closeDelete()
-        },
+		dialogDelete (val) {
+			val || this.closeDelete()
+		},
     
-        dataField:{
-            deep:true,
-            handler(){
-                this.$emit('receivedField', this.dataField)
-            }
-        }
-    },
+		dataField:{
+			deep:true,
+			handler(){
+				this.$emit('receivedField', this.dataField)
+			}
+		}
+	},
   
-    created () {
-        this.initialize()
-    },
+	created () {
+		this.initialize()
+	},
   
-    methods: {
-        initialize () {
-            this.dataField.line = []
-        },
+	methods: {
+		initialize () {
+			this.dataField.line = []
+		},
   
-        editItem (item) {
-            this.editedIndex = this.dataField.line.indexOf(item)
-            this.editedItem = Object.assign({}, item)
-            this.dialog = true
-        },
+		editItem (item) {
+			this.editedIndex = this.dataField.line.indexOf(item)
+			this.editedItem = Object.assign({}, item)
+			this.dialog = true
+		},
   
-        deleteItem (item) {
-            this.editedIndex = this.dataField.line.indexOf(item)
-            this.editedItem = Object.assign({}, item)
-            this.dialogDelete = true
-        },
+		deleteItem (item) {
+			this.editedIndex = this.dataField.line.indexOf(item)
+			this.editedItem = Object.assign({}, item)
+			this.dialogDelete = true
+		},
   
-        deleteItemConfirm () {
-            this.dataField.line.splice(this.editedIndex, 1)
-            this.closeDelete()
-        },
+		deleteItemConfirm () {
+			this.dataField.line.splice(this.editedIndex, 1)
+			this.closeDelete()
+		},
   
-        close () {
-            this.dialog = false
-            this.$nextTick(() => {
-                this.editedItem = Object.assign({}, this.defaultItem)
-                this.editedIndex = -1
-            })
-        },
+		close () {
+			this.dialog = false
+			this.$nextTick(() => {
+				this.editedItem = Object.assign({}, this.defaultItem)
+				this.editedIndex = -1
+			})
+		},
   
-        closeDelete () {
-            this.dialogDelete = false
-            this.$nextTick(() => {
-                this.editedItem = Object.assign({}, this.defaultItem)
-                this.editedIndex = -1
-            })
-        },
+		closeDelete () {
+			this.dialogDelete = false
+			this.$nextTick(() => {
+				this.editedItem = Object.assign({}, this.defaultItem)
+				this.editedIndex = -1
+			})
+		},
   
-        save () {
-            const convertToValueAPI = typeSelected=>{
-                const valuesAPI={
-                    'NOME DA EMPRESA' : 'NOME_EMPRESA',
-                    'CODIGO DO PRODUTO' : 'COD_PROD',
-                    'NOME DO PRODUTO' :'NOME_PROD',
-                    'CODIGO+NOME DO PRODUTO' : 'COD_NOME',
-                    'VALOR' : 'VALOR',
-                    'EAN13' : 'EAN_13',
-                    'TEXTO PERSONALIZADO' : 'PERSON_TEXT'
-                }
+		save () {
+			const convertToValueAPI = typeSelected=>{
+				const valuesAPI={
+					'NOME DA EMPRESA' : 'NOME_EMPRESA',
+					'CODIGO DO PRODUTO' : 'COD_PROD',
+					'NOME DO PRODUTO' :'NOME_PROD',
+					'CODIGO+NOME DO PRODUTO' : 'COD_NOME',
+					'VALOR' : 'VALOR',
+					'EAN13' : 'EAN_13',
+					'TEXTO PERSONALIZADO' : 'PERSON_TEXT'
+				}
 
-                return valuesAPI[typeSelected]
-            }
+				return valuesAPI[typeSelected]
+			}
 
-            this.editedItem.type=convertToValueAPI(this.editedItem.infoField)
+			this.editedItem.type=convertToValueAPI(this.editedItem.infoField)
         
 
-            if (this.editedIndex > -1) {
-                Object.assign(this.dataField.line[this.editedIndex], this.editedItem)
-            }
-            else {
-                this.dataField.line.push(this.editedItem)
-            }
+			if (this.editedIndex > -1) {
+				Object.assign(this.dataField.line[this.editedIndex], this.editedItem)
+			}
+			else {
+				this.dataField.line.push(this.editedItem)
+			}
             
-            this.close()
-        },
+			this.close()
+		},
       
-        etiquetaRecebe(){
-            this.dataField = this.retrieved.dataField
-        },
-    },
+		etiquetaRecebe(){
+			this.dataField = this.retrieved.dataField
+		},
+	},
   
 }
 </script>

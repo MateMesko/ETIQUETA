@@ -26,39 +26,39 @@
 import axios from './../../axios.js'
 
 export default {
-    data(){
-        return{
-            loginData:false,
-            login_code: '',
-            pin_code: '',
-            productsData: [],
-            pass1: "",
-            pass2: "",
-            pass3: "",
-            pass4: "",
-            pass5: "",
-        }
-    },
-    methods:{
-        async handleSubmit(){
-            const response = await axios.post('/auth',{
-                
-                login_code: this.login_code,
-                pin: this.pin_code,
-                
-                device_id: `50`,
-                app_type: 'DESKTOP',
+	data(){
+		return{
+			loginData:false,
+			login_code: '',
+			pin_code: '',
+			productsData: [],
+			pass1: '',
+			pass2: '',
+			pass3: '',
+			pass4: '',
+			pass5: '',
+		}
+	},
+	methods:{
+		async handleSubmit(){
+			const response = await axios.post('/auth',{
 
-                info: {
-                    model: 'API TAG'
-                }
-            })
-            window.alert("logado com sucesso")
-            localStorage.setItem('hash', response.data.data.hash)
-            localStorage.setItem('ID', `50`)
-            this.$router.push({path:'/'})
-        },
-    }        
+				login_code: this.login_code,
+				pin: this.pin_code,
+                
+				device_id: '50',
+				app_type: 'DESKTOP',
+
+				info: {
+					model: 'API TAG'
+				}
+			})
+			window.alert('logado com sucesso')
+			localStorage.setItem('hash', response.data.data.hash)
+			localStorage.setItem('ID', '50')
+			this.$router.push({path:'/'})
+		},
+	}        
 }
 </script>
 

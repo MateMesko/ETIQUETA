@@ -156,111 +156,111 @@
 import VisualPrinter from './drawn/DrawnDimensions'
 
 export default {
-  components: {VisualPrinter},
- data(){
-    return{
-      //objects
-      option:{
-        product:{
-          name:'nome do produto',
-          companyName:'nome da empresa',
-          DisplayName:'codigo+nome',
-          code:'codigo',
-          textEditable:'texto editado',
-          unitary_value: 9.999 ,
-          
-        },
-      },
-      //feedback
-      text: 'My timeout is set to 2000.',
-      timeout: 2000,
-      sheet: false,
-      snackbar: false,
-      //arrays
-      dialog: [],
-      expand: [],
-      showEdit: [],
-      showDelete: [],
-      showPrinter: [],
-      showView: [],
-      printerTag: []
-    }
-  },
+	components: {VisualPrinter},
+	data(){
+		return{
+			//objects
+			option:{
+				product:{
+					name:'nome do produto',
+					companyName:'nome da empresa',
+					DisplayName:'codigo+nome',
+					code:'codigo',
+					textEditable:'texto editado',
+					unitary_value: 9.999 ,
+            
+				},
+			},
+			//feedback
+			text: 'My timeout is set to 2000.',
+			timeout: 2000,
+			sheet: false,
+			snackbar: false,
+			//arrays
+			dialog: [],
+			expand: [],
+			showEdit: [],
+			showDelete: [],
+			showPrinter: [],
+			showView: [],
+			printerTag: []
+		}
+	},
   
-  created(){
-    this.$http.get('printDB').then(res=>{
-      this.printerTag = res.data
-    })
-    this.$router.push({name: "home"})
+	created(){
+		this.$http.get('printDB').then(res=>{
+			this.printerTag = res.data
+		})
+		this.$router.push({name: 'home'})
     
-    if(localStorage.webSite == '/criar')
-    {
-      this.snackbar = true
-      this.text = 'Salvo com sucesso'
+		if(localStorage.webSite == '/criar')
+		{
+			this.snackbar = true
+			this.text = 'Salvo com sucesso'
 
-      localStorage.setItem('webSite', location.pathname)
-      this.$http.get('printDB').then(res => {
-      this.printerTag=res.data})
-    }
-    else if(localStorage.webSite == 'editado')
-    {
-      this.snackbar = true
-      this.text = 'Editado com sucesso'
+			localStorage.setItem('webSite', location.pathname)
+			this.$http.get('printDB').then(res => {
+				this.printerTag=res.data})
+		}
+		else if(localStorage.webSite == 'editado')
+		{
+			this.snackbar = true
+			this.text = 'Editado com sucesso'
 
-      localStorage.setItem('webSite', location.pathname)
-      this.$http.get('printDB').then( res => {
-      this.printerTag=res.data})
-    }
+			localStorage.setItem('webSite', location.pathname)
+			this.$http.get('printDB').then( res => {
+				this.printerTag=res.data})
+		}
     
-  },
+	},
 
-  methods:{
-    deletar(id){
-      this.$http.delete(`/printDB/${id}`)
-      this.delay(1)
-      this.snackbar = true
-      this.text = ("deletado com sucesso")
+	methods:{
+		deletar(id){
+			this.$http.delete(`/printDB/${id}`)
+			this.delay(1)
+			this.snackbar = true
+			this.text = ('deletado com sucesso')
       
-      this.$http.get('printDB').then(res=>{
-        this.printerTag = res.data
-      })
+			this.$http.get('printDB').then(res=>{
+				this.printerTag = res.data
+			})
 
 
-      this.$http.get('printDB').then(res=>{
-        this.printerTag = res.data
-      })
+			this.$http.get('printDB').then(res=>{
+				this.printerTag = res.data
+			})
       
-    },
+		},
 
-    delay(n){
-      return new Promise(function(resolve){
-          setTimeout(resolve,n*1000);
-      });
-    },
+		delay(n){
+			return new Promise(function(resolve){
+				setTimeout(resolve,n*1000)
+			})
+		},
 
-    createTag(){
-      this.$router.push({name:'criarEtiqueta'})
-    },
+		createTag(){
+			this.$router.push({name:'criarEtiqueta'})
+		},
 
-    editTag(){
-      this.$router.push({name:'editValues', params:{id : this.i}})
-    },
+		editTag(){
+			this.$router.push({name:'editValues', params:{id : this.i}})
+		},
 
-    cancelar(){
-      this.$http.get('printDB').then(res=>{
-        this.printerTag = res.data
-      })
+		cancelar(){
+			this.$http.get('printDB').then(res=>{
+				this.printerTag = res.data
+			})
       
-    },
+		},
     
-    voltar(){
-      this.$http.get('printDB').then(res=>{
-        this.printerTag = res.data
-      })
-    }
+		voltar(){
+			this.$http.get('printDB').then(res=>{
+				this.printerTag = res.data
+			})
+		}
    
-  },
-};
+	},
+}
 </script>
 
 <style>

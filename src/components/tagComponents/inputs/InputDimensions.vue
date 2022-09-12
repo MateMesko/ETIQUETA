@@ -56,35 +56,36 @@
 
 
 export default {
-    props:['retrieved'],
-    data() {
-        return {
-            nameRule: [v => !!v || 'Informe o nome'],
-            codeRule: [v => !!v || 'Informe o codigo'],
-            columnRule: [v => !!v || 'Informe quantidade de colunas'],
-            spaceColumnRule: [v => !!v || 'Informe espaçamento entre colunas'],
-            widthRule: [v => !!v || 'Informe a altura'],
-            heightRule: [v => !!v || 'Informe a largura'],
-            optionOrientation: ['FINAL DA PAGINA','INICIO DA PAGINA'],
-            
-            tagPrinter:{
-                valid: true,
-                name: '',
-                code: '',
-                heightTag: 30,
-                widthTag: 30,
-                numColumn:1
-            }
-        }
-    },
+	props:['retrieved'],
     
-    methods:{
-        requestValues(){  
-            this.tagPrinter = this.retrieved.dataPrint
-        }
-    },
+	data() {
+		return {
+			nameRule: [v => !!v || 'Informe o nome'],
+			codeRule: [v => !!v || 'Informe o codigo'],
+			columnRule: [v => !!v || 'Informe quantidade de colunas'],
+			spaceColumnRule: [v => !!v || 'Informe espaçamento entre colunas'],
+			widthRule: [v => !!v || 'Informe a altura'],
+			heightRule: [v => !!v || 'Informe a largura'],
+			optionOrientation: ['FINAL DA PAGINA','INICIO DA PAGINA'],
+            
+			tagPrinter:{
+				valid: true,
+				name: '',
+				code: '',
+				heightTag: 30,
+				widthTag: 30,
+				numColumn:1
+			}
+		}
+	},
+    
+	methods:{
+		requestValues(){  
+			this.tagPrinter = this.retrieved.dataPrint
+		}
+	},
 
-    watch:{
+	watch:{
 		tagPrinter:{
 			deep: true,
 
