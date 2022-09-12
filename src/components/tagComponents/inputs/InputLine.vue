@@ -78,6 +78,7 @@
                                             <v-text-field type="number" v-model.number="editedItem.spaceXtension" label="Espaçamento a esquerda(mm)"/>
                                         </v-col>
                                     </v-row>
+									
                                 </v-container>
                             </v-form>
         
@@ -92,6 +93,7 @@
                                 CONFIRMAR
                                 </v-btn>
                             </v-card-actions>
+
                         </v-card>
                     </v-dialog>
 
