@@ -130,6 +130,20 @@
         ]
       },
       "id": 2
+    },
+    {
+      "dataPrint": {
+        "valid": false,
+        "name": "",
+        "code": "",
+        "heightTag": 30,
+        "widthTag": 30,
+        "numColumn": 1
+      },
+      "dataField": {
+        "line": []
+      },
+      "id": 3
     }
   ],
   "dataPrinter": {

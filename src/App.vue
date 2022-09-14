@@ -12,5 +12,5 @@ import MenuItens from './components/navigation/MenuItens.vue'
 
 export default {
     components:{MenuItens}
-};
+}
 </script>
