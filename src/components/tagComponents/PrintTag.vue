@@ -2,17 +2,17 @@
   <div>
     <v-card class="mx-auto" max-width="98%" min-height="98%" >
       <v-subheader>IMPRIMIR:</v-subheader>
+		
       <!-- options printer -->
       <v-row >
         <v-btn class="ma-5 text-white" :disabled="!awesome" color="primary" v-on:click="adicionarLinha()">
           <v-icon  >
             mdi-plus
           </v-icon>
-
           ADICIONAR LINHA
         </v-btn>
 
-        <v-btn class="ma-5 text-white"  :disabled="!awesome" color="green" v-on:click="imprimir()">
+        <v-btn class="ma-5 text-white" :disabled="!awesome" color="green" v-on:click="imprimir()">
           <v-icon  >
             mdi-printer
           </v-icon>
@@ -35,7 +35,6 @@
             <v-progress-linear
               indeterminate
               color="primary"
-            
             ></v-progress-linear>
           </div>
         </v-col>
@@ -45,7 +44,7 @@
         </v-col>
 
         <v-col cols="2" >
-          <v-text-field v-if="awesome" v-model="option.amount" type="number" label="Quantidade"/>
+          <v-text-field min="1" v-if="awesome" v-model="option.amount" type="number" label="Quantidade"/>
         </v-col>
         
         <v-col v-if="awesome" cols="1" class="mt-3" >
@@ -56,9 +55,8 @@
           </v-btn>
         </v-col>
         
-        <VisualPrinter v-if="viewPrinter" :visualValue="option.product" :viewDataReceived="printerTag[id]" />
-      
-      </v-row>
+        <VisualPrinter v-if="viewPrinter" :visualValue="option.product" :viewDataReceived="printerTag[id]"  @receivedData="itenRequestLine[i] = $event"/>
+	  </v-row>
     </v-card>  
   </div>
 </template>
@@ -75,6 +73,8 @@ export default {
 			optionReceivedsAimprimir: {},
 			awesome:false,
 			viewPrinter:false,
+			valueTagLines:'',
+			itenRequestLine:[],
 			printerTag: [{
 				dataPrint:'',
 
@@ -92,7 +92,7 @@ export default {
 
 			options: [{
 				product: '',
-				amount: 0
+				amount: 1
 			}],
 
 			productsNames: [],
@@ -103,7 +103,7 @@ export default {
 	},
 
 	methods:{
-		adicionarLinha(){this.options.push({})},
+		adicionarLinha(){this.options.push({amount:1})},
 
 		printerPPLB(){
 			this.itemPPLB()
@@ -111,35 +111,36 @@ export default {
 		},
 
 		itemPPLB(){
-			for(this.f=0; this.f<this.options.length; this.f++)
-			{
-				this.linePrinter[this.f] = ''
-        
-				this.linePrinter[this.f] = this.headerPrinter
-
+			for(let numberOfTag=0; numberOfTag<this.options.length; numberOfTag++){
+				this.linePrinter[numberOfTag] = ''
+				this.linePrinter[numberOfTag] = this.headerPrinter
 				this.linesValues = this.printerTag[this.id].dataField.line
+				
+				for(let numberOfLine=0; numberOfLine < this.linesValues.length; numberOfLine++){
+					let lengthRequest = this.itenRequestLine[numberOfTag][numberOfLine].length
+					let spaceXtension = this.linesValues[numberOfLine].spaceXtension * 8
+					let spaceYard = this.linesValues[numberOfLine].spaceYard * 8
+					let spaceLine = this.linesValues[numberOfLine].spaceLine * 8
 
-				for(this.i=0; this.i < this.linesValues.length; this.i++){
-          
-					if(this.printerTag[this.id].dataField.line[this.i].infoField == 'EAN13'){
-						this.linePrinter[this.f] = this.linePrinter[this.f] + `B${this.linesValues[this.i].spaceXtension * 8},${this.linesValues[this.i].spaceYard * 8},0,E30,${this.linesValues[this.i].sizeFont * 8},${this.linesValues[this.i].typeFont * 8},${this.linesValues[this.i].spaceLine},N,"${this.printData.codEAN13}"\n`
-					}
-					else{
-						if(this.linesValues[this.i].infoField == 'EMPRESA'){
-							this.linePrinter[this.f] = this.linePrinter[this.f]+`A${this.linesValues[this.i].spaceXtension * 8},${this.linesValues[this.i].spaceYard * 8},0,${this.linesValues[this.i].typeFont},${this.linesValues[this.i].sizeFont},${this.linesValues[this.i].sizeFont},N,"${this.printData.company}"\n`
+					for(let infoIndex=0; infoIndex < lengthRequest; infoIndex++){
+						let configLine = this.itenRequestLine[numberOfTag][numberOfLine][infoIndex]
+						let positionLine
+						if(this.printerTag[this.id].dataField.line[numberOfLine].infoField == 'EAN13'){
+							positionLine=`B`
 						}
-						else  if(this.linesValues[this.i].infoField == 'PROD'){
-							this.linePrinter[this.f] = this.linePrinter[this.f]+`A${this.linesValues[this.i].spaceXtension * 8},${this.linesValues[this.i].spaceYard * 8},0,${this.linesValues[this.i].typeFont},${this.linesValues[this.i].sizeFont},${this.linesValues[this.i].sizeFont},N,"${this.options[this.f].product}"\n`
-						}else  if(this.linesValues[this.i].infoField == 'personalizado'){
-							this.linePrinter[this.f] = this.linePrinter[this.f]+`A${this.linesValues[this.i].spaceXtension * 8},${this.linesValues[this.i].spaceYard * 8},0,${this.linesValues[this.i].typeFont},${this.linesValues[this.i].sizeFont},${this.linesValues[this.i].sizeFont},N,"${this.linesValues[this.i].textEditable}"\n`
+						else{
+							positionLine= `A`
 						}
-					} 
+						positionLine+=`${spaceXtension},${spaceYard+(spaceLine*infoIndex)}`
+						let linePrinter = `${positionLine},${configLine}`
+
+						this.linePrinter[numberOfTag] = this.linePrinter[numberOfTag]+linePrinter
+					}	
 				}
-        
-				for(this.q=0; this.q < this.options[this.f].amount; this.q++){
-					this.valuePrinter = this.valuePrinter + this.linePrinter[this.f] + 'P1\n'
+
+				for(this.q=0; this.q < this.options[numberOfTag].amount; this.q++){
+					this.valuePrinter = this.valuePrinter + this.linePrinter[numberOfTag] + 'P1\n'
 				}
-        
 			}
 		},
 
@@ -187,6 +188,7 @@ export default {
 				valuesReceived.companyName = dataConfig
 				return valuesReceived
 			})
+
 			this.awesome = true     
 		}, 
 	},

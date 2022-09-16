@@ -8,9 +8,8 @@
       <!-- tag features -->
       <v-stepper-content step="1" >
         <v-card class="mx-auto" outlined>
-          <printerData  :retrieved="printerTag[id]"  @receivedData="valueReceived.dataPrint = $event"/>
+          <FormTagDimensions :retrieved="printerTag[id]"  @receivedData="valueReceived.dataPrint = $event"/>
         </v-card>
-        
         <v-btn class="ma-3" :disabled="!valueReceived.dataPrint.valid"  color="primary" small @click="e13=2">
           <v-icon small>
             mdi-skip-next-circle
@@ -37,7 +36,7 @@
       <!-- line features -->
       <v-stepper-content step="2">
         <v-card class="mx-auto" outlined>
-          <InputtagInfo  :retrieved="printerTag[id]"   @receivedField="valueReceived.dataField = $event"/>
+          <FormTagLine :visualValue="option.product" :viewDataReceived="valueReceived" :retrieved="printerTag[id]"   @receivedField="valueReceived.dataField = $event"/>
           
           <v-btn class="ma-2" small color="deep-orange accent-4" dark @click="e13 = 1">
             <v-icon small class="mr-2">
@@ -66,8 +65,7 @@
             </template>
           <v-dialog v-model="dialog" >
             <v-card>
-              <VisualPrinter class="centerText" :visualValue="option.product" 
-                :viewDataReceived="valueReceived" />
+              <VisualPrinter class="centerText" :visualValue="option.product" :viewDataReceived="valueReceived" />
                 
               <v-divider></v-divider>
         
@@ -116,7 +114,7 @@ export default {
 					unitary_value: 9.999 ,
 				},
 			},
-			e13: 2,
+			e13: 1,
 			visualizar: false,
 			sheet: false,
 			dialog: false,

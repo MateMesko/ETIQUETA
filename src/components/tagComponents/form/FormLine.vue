@@ -8,10 +8,9 @@
             <template  v-slot:top>
                 <v-toolbar  flat >
                     <v-spacer ></v-spacer>
-                    
-                    <v-dialog v-model="dialog" max-width="100vh" max-height="50vh">
+                    <v-dialog v-model="dialog" persistent max-width="100vh" max-height="50vh">
                         <template v-slot:activator="{ on, attrs }">
-                            <v-btn color="blue " small dark class="mb-2" v-bind="attrs" v-on="on">
+                            <v-btn color="blue " small dark class="mb-2" v-bind="attrs" v-on="on" @click="createdItem()">
                                 <v-icon small class="mr-2" @click="editItem(item)">
                                 mdi-note-plus
                                 </v-icon>
@@ -78,14 +77,14 @@
                                             <v-text-field type="number" v-model.number="editedItem.spaceXtension" label="Espaçamento a esquerda(mm)"/>
                                         </v-col>
                                     </v-row>
-									
+									<VisualPrinter class="centerText" :visualValue="visualValue" :viewDataReceived="viewDataReceived" />
                                 </v-container>
                             </v-form>
         
                             <v-card-actions >
                                 <v-spacer></v-spacer>
                                 
-                                <v-btn color="red darken-1" text @click="close">
+                                <v-btn color="red darken-1" text @click="closeModal()">
                                 fechar
                                 </v-btn>
 
@@ -103,7 +102,7 @@
                             <v-card-actions>
                                 <v-spacer></v-spacer>
 
-                                <v-btn color="blue darken-1" text @click="closeDelete">CANCELAR</v-btn>
+                                <v-btn color="blue darken-1" text @click="close">CANCELAR</v-btn>
 
                                 <v-btn color="blue darken-1" text @click="deleteItemConfirm">DELETAR</v-btn>
 
@@ -150,10 +149,12 @@
 </template>
 
 <script>
+import VisualPrinter from '../drawn/DrawnDimensions'
 
 export default {
-	props: ['retrieved'],
-  
+	props: ['retrieved','viewDataReceived', 'visualValue'],
+   	components: {VisualPrinter},
+
 	data: () => ({
 		infoRule:[v => !!v || 'Informe o campo'],
 		typeFontRule:[v => !!v || 'Informe a fonte'],
@@ -166,7 +167,7 @@ export default {
 		optionsEAN13on:['sim','não'],
 		dialog: false,
 		dialogDelete: false,
-
+		createdValue:false,
 		headers: [{
 			text: 'INFORMAÇÃO EM LINHA',
 			align: 'start',
@@ -186,7 +187,7 @@ export default {
 		},
   
 		editedIndex: -1,
-        
+        tempValue:false,
 		editedItem: {
 			infoField: '',
 			textEditable:'',
@@ -200,7 +201,7 @@ export default {
 		},
       
 		defaultItem: {
-			infoField: '',
+			infoField: 'NOME DA EMPRESA',
 			textEditable:'',
 			typeFont: 0,
 			sizeFont: 0,
@@ -232,6 +233,15 @@ export default {
 			handler(){
 				this.$emit('receivedField', this.dataField)
 			}
+		},
+
+		editedItem:{
+			deep:true,
+			handler(){
+
+				this.uploadData()
+				this.$emit('receivedField', this.dataField)
+			}
 		}
 	},
   
@@ -249,7 +259,12 @@ export default {
 			this.editedItem = Object.assign({}, item)
 			this.dialog = true
 		},
-  
+		createdItem(){
+
+			this.createdValue=true
+
+		}
+		,
 		deleteItem (item) {
 			this.editedIndex = this.dataField.line.indexOf(item)
 			this.editedItem = Object.assign({}, item)
@@ -276,8 +291,20 @@ export default {
 				this.editedIndex = -1
 			})
 		},
-  
-		save () {
+		closeModal(){
+			if(this.tempValue==true)
+			{	
+				this.tempValue=false
+				this.dataField.line.pop(this.editedItem)
+			}
+			this.close()
+		}
+		,
+		save () {	
+			this.tempValue=false
+            this.close()
+		},
+		uploadData(){
 			const convertToValueAPI = typeSelected=>{
 				const valuesAPI={
 					'NOME DA EMPRESA' : 'NOME_EMPRESA',
@@ -291,6 +318,11 @@ export default {
 
 				return valuesAPI[typeSelected]
 			}
+			if(this.createdValue == true && this.dialog == true){
+				this.dataField.line.push(this.editedItem)
+				this.createdValue = false
+				this.tempValue=true
+			}
 
 			this.editedItem.type=convertToValueAPI(this.editedItem.infoField)
         
@@ -298,13 +330,8 @@ export default {
 			if (this.editedIndex > -1) {
 				Object.assign(this.dataField.line[this.editedIndex], this.editedItem)
 			}
-			else {
-				this.dataField.line.push(this.editedItem)
-			}
-            
-			this.close()
+			
 		},
-      
 		etiquetaRecebe(){
 			this.dataField = this.retrieved.dataField
 		},

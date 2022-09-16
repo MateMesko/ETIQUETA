@@ -20,7 +20,6 @@ export default new Router({
     {
         path:'/etiqueta',
         component:HomeTag,
-        name:"home",
         props:true,
         children:[
             {path:'', component:ListTags, name:"home"},

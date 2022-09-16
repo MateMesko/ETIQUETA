@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="ma-5" style="display:inline-table; ">
+        <div class="ma-5" style="display:inline-table;overflow:hidden; ">
             <div :style="dimensions">
                 <div style="display:table;" :style="position">
                     <div v-for="(lines,i) in viewDataReceived.dataField.line" :key="i">
-                        <lineViewPrinter :visualValue="visualValue" :lineProp="lines" :slider="slider" :i="i"></lineViewPrinter>
-                    </div>
+                        <lineViewPrinter :visualValue="visualValue" :lineProp="lines" :slider="slider" :i="i" @receivedData="itenRequestLine[i] = $event"></lineViewPrinter>
+					</div>
                 </div>      
             </div>
         </div>
@@ -23,7 +23,8 @@ export default {
 	data() {
 		return {
 			tagArea: this.viewDataReceived.dataPrint,
-			slider:1.5
+			slider:1,
+			itenRequestLine:[]
 		}
 	},
 
@@ -33,7 +34,11 @@ export default {
 		},
 		position() {
 			return `margin-left:${this.viewDataReceived.dataPrint.spaceRight * this.slider}mm; margin-top:${this.viewDataReceived.dataPrint.spaceTop * this.slider}mm`
-		}
+		},
+		
+	},
+	created(){
+		this.$emit('receivedData', this.itenRequestLine)
 	}
 }
 </script>

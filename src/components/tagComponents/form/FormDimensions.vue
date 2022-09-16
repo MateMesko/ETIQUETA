@@ -10,12 +10,10 @@
                     <v-col cols="9" >
                         <v-text-field v-model="tagPrinter.name" :rules="nameRule" required label="Nome da etiqueta" />
                     </v-col>
-
                     <v-col cols="3">
                         <v-text-field v-model="tagPrinter.code" :rules="codeRule" required label="Codigo da etiqueta" />
                     </v-col>
                 </v-row>
-
                 <v-row>
                     <v-col cols="3">
                         <v-text-field type="number" v-model.number="tagPrinter.numColumn" :rules="columnRule" required label="Numero de colunas" />
